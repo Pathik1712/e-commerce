@@ -1,0 +1,12 @@
+%default-settings {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body.home {
+  font-family: sans-serif;
+  height: 100vh;
+  width: 100vw;
+  @extend %default-settings;
+  background-color: white;
+}

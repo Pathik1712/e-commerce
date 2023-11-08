@@ -1,0 +1,58 @@
+@use "../../../../components/global/base.module";
+
+.add_item {
+  @extend %full-area;
+  display: grid;
+  place-items: center;
+  form > div {
+    aspect-ratio: 16/9;
+    border: 5px solid base.$pink;
+    height: 10rem;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    > button {
+      aspect-ratio: 1;
+      height: 2rem;
+      background-color: transparent;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 5px gray;
+      cursor: pointer;
+    }
+  }
+}
+.nav {
+  height: 3rem;
+  width: 100%;
+  background-color: base.$pink;
+  padding-inline: 2rem;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  color: white;
+  > img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    box-shadow: 0 0 5px gray;
+  }
+  > p {
+    padding-left: 1rem;
+    text-transform: capitalize;
+  }
+  > div {
+    padding-right: 2rem;
+    justify-self: end;
+    > a {
+      color: base.$blue;
+      text-transform: capitalize;
+      background-color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      padding-inline: 5px;
+      font-weight: 600;
+      margin-inline: 10px;
+    }
+  }
+}

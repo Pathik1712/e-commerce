@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  email          String    @unique
+  password       String?
+  phone          String?
+  name           String?
+  image          String?
+  emailVerified  DateTime?
+  type           Seller    @default(buyer)
+  items          Item[]    @relation("items")
+  whishlist      Item[]    @relation("whishlist")
+  cart           Item[]    @relation("cart")
+  sold_items     Sold[]
+  adress         Adress[]
+  Account        Account[]
+  company_detail Company?   @relation(fields: [companyId], references: [id])
+  companyId      String?    @db.ObjectId
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  token_type        String?
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  id_token          String? @db.String
+  scope             String?
+  session_state     String?
+  expires_at        Int?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @db.ObjectId
+
+  @@unique([provider, providerAccountId])
+}
+
+model Adress {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  mobile  String
+  adress  String?
+  pincode String?
+  country Json
+  city    String
+  state   String
+  User    User?     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  userId  String?   @db.ObjectId
+  Company Company[]
+}
+
+model Company {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  company_name String
+  company_logo String
+  contact      String
+  address      Adress @relation(fields: [adressId], references: [id])
+  User         User[]
+  adressId     String @db.ObjectId
+}
+
+model Odered {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  item      Item     @relation(fields: [itemId], references: [id])
+  details   Json?
+  placed_at DateTime @default(now())
+  price     Float
+  status    String
+  itemId    String   @db.ObjectId
+}
+
+model Item {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  price        Float
+  mrp          Float?
+  catagory     String?
+  image        String[]
+  ratings      Float    @default(0)
+  seller       User     @relation("items", fields: [seller_id], references: [id])
+  seller_id    String   @db.ObjectId
+  whishlist    User     @relation("whishlist", fields: [whishlist_id], references: [id])
+  whishlist_id String   @db.ObjectId
+  cart         User     @relation("cart", fields: [cart_id], references: [id])
+  cart_id      String   @db.ObjectId
+  Sold         Sold[]
+  reviewes     Json[]
+  Odered       Odered[]
+}
+
+model Sold {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  item      Item     @relation(fields: [itemId], references: [id])
+  price     Float
+  sold_date DateTime @default(now())
+  quantity  Int      @default(0)
+  city      String
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.ObjectId
+  itemId    String   @db.ObjectId
+}
+
+enum Seller {
+  buyer
+  seller
+}

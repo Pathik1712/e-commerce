@@ -1,0 +1,33 @@
+$pink: rgb(255, 43, 149);
+$blue: #00a0ff;
+$sm: 430px;
+$md: 750px;
+$lg: 1200px;
+$window-height: var(--windowHeight);
+
+%background {
+  background: hsla(31, 90%, 76%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(31, 90%, 76%, 1) 0%,
+    hsla(302, 82%, 76%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(31, 90%, 76%, 1) 0%,
+    hsla(302, 82%, 76%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(31, 90%, 76%, 1) 0%,
+    hsla(302, 82%, 76%, 1) 100%
+  );
+}
+
+%full-area {
+  height: 100%;
+  width: 100%;
+}
