@@ -17,11 +17,26 @@ const Dashnav = ({ img, name }: props) => {
         width={500}
       />
       <p>{name}</p>
-      <div>
+      <div className={css.nav_pc}>
         <Link href={"dashboard"}>add item</Link>
         <Link href={"dashboard?path=orders"}>order&#39;s</Link>
         <Link href={"dashboard?path=charts"}>charts</Link>
         <Link href={"dashboard?path=items"}>items</Link>
+        <Link href={"/"}>home</Link>
+      </div>
+      <div className={css.nav_mobile}>
+        <input
+          type='checkbox'
+          id='dash-board-nav-toggle'
+        />
+        <label htmlFor='dash-board-nav-toggle'>Pages</label>
+        <section>
+          <Link href={"dashboard"}>add item</Link>
+          <Link href={"dashboard?path=orders"}>order&#39;s</Link>
+          <Link href={"dashboard?path=charts"}>charts</Link>
+          <Link href={"dashboard?path=items"}>items</Link>
+          <Link href={"/"}>home</Link>
+        </section>
       </div>
     </nav>
   )

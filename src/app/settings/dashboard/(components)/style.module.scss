@@ -22,8 +22,8 @@
     }
   }
 }
+// ! style to nav bar
 .nav {
-  height: 3rem;
   width: 100%;
   background-color: base.$pink;
   padding-inline: 2rem;
@@ -40,9 +40,12 @@
   > p {
     padding-left: 1rem;
     text-transform: capitalize;
+    font-weight: 800;
+    font-size: larger;
   }
-  > div {
-    padding-right: 2rem;
+
+  .nav_pc {
+    padding-right: 4rem;
     justify-self: end;
     > a {
       color: base.$blue;
@@ -50,9 +53,57 @@
       background-color: white;
       text-decoration: none;
       border-radius: 10px;
-      padding-inline: 5px;
+      padding: 2px 5px;
       font-weight: 600;
       margin-inline: 10px;
+    }
+    @media (max-width: base.$md) {
+      display: none;
+    }
+  }
+  .nav_mobile {
+    justify-self: flex-end;
+    margin-right: 4rem;
+    position: relative;
+    > input {
+      display: none;
+      &:checked ~ section {
+        transform: scale(1);
+      }
+    }
+    > label {
+      position: relative;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background-color: base.$brown;
+      font-weight: bolder;
+    }
+    > section {
+      position: absolute;
+      top: 150%;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0);
+      transition: all 0.3s;
+      transform-origin: top center;
+      background-color: base.$blue;
+      border-radius: 5px;
+      >a{
+        width: max-content;
+        text-align: center;
+        text-decoration: none;
+        text-transform: capitalize;
+        display: block;
+        padding: 10px;
+        color: white;
+        font-weight: 600;
+        // border-bottom:1px solid white;
+      }
+    }
+    @media (min-width: base.$md) {
+      display: none;
     }
   }
 }
