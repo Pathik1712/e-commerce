@@ -3,7 +3,8 @@
 .add_item {
   @extend %full-area;
   display: grid;
-  place-items: center;
+  justify-content:center ;
+  padding-top: 2rem;
   form > div {
     aspect-ratio: 16/9;
     border: 5px solid base.$pink;

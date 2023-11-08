@@ -36,8 +36,14 @@ export const GET = async (req: Request) => {
     where: {
       email: email!,
     },
-    include: {
-      company_detail: true,
+    select: {
+      id:false,
+      password:false,
+      company_detail: {
+        include:{
+          address:true
+        }
+      },
     },
   })
   console.log(res)
