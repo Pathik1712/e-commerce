@@ -1,5 +1,4 @@
 "use client"
-import css from "./style.module.scss"
 import { useStoreselector } from "@/lib/redux/store"
 import Utility from "./(components)/Utility"
 import Loading from "./(components)/loading"
