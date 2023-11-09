@@ -18,21 +18,44 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    > div {
-      aspect-ratio: 16/9;
-      border: 5px solid base.$pink;
+    width: 80vw;
+    max-width: 800px;
+    overflow-x: hidden;
+    .section_scroll {
       width: 100%;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      > button {
-        aspect-ratio: 1;
-        height: 2rem;
-        background-color: transparent;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 0 5px gray;
-        cursor: pointer;
+      display: flex;
+      flex-direction: row-reverse;
+      overflow-x: scroll;
+      gap: 30px;
+      scrollbar-width: thin;
+      scrollbar-color: base.$brown transparent;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 2rem;
+      &::-webkit-scrollbar {
+        background: transparent;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: base.$brown;
+        border-radius: 25px;
+      }
+      > div {
+        scroll-snap-align: center;
+        aspect-ratio: 16/9;
+        border: 5px solid base.$pink;
+        min-width: 95%;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        > button {
+          aspect-ratio: 1;
+          height: 2rem;
+          background-color: transparent;
+          border: none;
+          border-radius: 5px;
+          box-shadow: 0 0 5px gray;
+          cursor: pointer;
+        }
       }
     }
     > input {
@@ -42,16 +65,15 @@
       width: 20rem;
       padding-left: 1rem;
     }
-    >textarea{
+    > textarea {
       @extend %input-style;
       width: 100%;
       padding-left: 1rem;
       padding-top: 1rem;
       height: 10rem;
       resize: none;
-
     }
-    >button{
+    > button {
       background-color: base.$blue;
       border: none;
       color: white;
@@ -147,4 +169,3 @@
     }
   }
 }
-
