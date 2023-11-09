@@ -6,6 +6,7 @@ import {ToastOptions} from 'react-hot-toast'
       backgroundColor: "rgba(0,0,0,0.7)",
       color: "white",
       fontWeight: "bold",
+      textTransform:'capitalize'
     },
   }
 

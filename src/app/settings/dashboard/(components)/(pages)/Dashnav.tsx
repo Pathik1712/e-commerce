@@ -19,10 +19,10 @@ const Dashnav = ({ img, name }: props) => {
       <p>{name}</p>
       <div className={css.nav_pc}>
         <Link href={"dashboard"}>add item</Link>
-        <Link href={"dashboard?path=orders"}>order&#39;s</Link>
-        <Link href={"dashboard?path=charts"}>charts</Link>
-        <Link href={"dashboard?path=items"}>items</Link>
-        <Link href={"/"}>home</Link>
+        <Link href={"dashboard?path=orders"}>Order&#39;s</Link>
+        <Link href={"dashboard?path=charts"}>Charts</Link>
+        <Link href={"dashboard?path=items"}>Items</Link>
+        <Link href={"/"}>Home</Link>
       </div>
       <div className={css.nav_mobile}>
         <input
