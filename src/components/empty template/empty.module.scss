@@ -1,29 +1,38 @@
-.empty{
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    >h1{
-        color: gray;
+@use "../global/base.module";
+
+.empty {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  > h1 {
+    font-style: italic;
+    color: gray;
+    @media (max-width: base.$sm) {
+      font-size: 1.8rem;
     }
-    >svg{
-        transform: translateX(-500%);
-        height: 5rem;
-        animation: run 2s 1 forwards;
-        path{
-            fill: gray !important;
-        }
-        @keyframes run {
-            30%{
-                transform: translate(200%);
-            }
-            60%{
-                transform: translate(-100%);
-            }
-            100%{
-                transform: translate(0);
-            }
-        }
+  }
+  > svg {
+    transform: translateX(-500%);
+    height: 5rem;
+    animation: run 2s 1 forwards;
+    path {
+      fill: gray !important;
     }
+    @media (max-width: base.$sm) {
+      height: 3rem;
+    }
+    @keyframes run {
+      30% {
+        transform: translate(200%);
+      }
+      60% {
+        transform: translate(-100%);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+  }
 }
