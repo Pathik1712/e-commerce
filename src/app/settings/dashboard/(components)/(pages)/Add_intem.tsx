@@ -44,6 +44,10 @@ const Add_intem = () => {
               className={css.add_button}
               type='button'
               onClick={() => {
+                if(image_slider.find((i)=>!i.link)){
+                  toast.error('plese enter image in all box',react_toast_style)
+                  return
+                }
                 if (image_slider.length > 5) {
                   toast.error("You Can Only Select 6 Image", react_toast_style)
                   return
