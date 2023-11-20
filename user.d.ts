@@ -44,18 +44,21 @@ type Order = {
 }
 
 type Item = {
-  id: string
+  id?: string
   name: string
   price: Float
   mrp?: Float
-  catagory: string
+  catagory: string[]
   image: string[]
   ratings: Float
   Sold: Sold[]
-  reviewes: {
-    ratings: Number
-    desc: string
-  }
+  description: String
+  reviewes: [
+    {
+      ratings: Number
+      desc: string
+    }
+  ]
   Odered: Order[]
 }
 

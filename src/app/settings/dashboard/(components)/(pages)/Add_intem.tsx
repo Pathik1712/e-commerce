@@ -5,7 +5,24 @@ import { react_toast_style } from "@/func/ReactToastStyle"
 import toast from "react-hot-toast"
 import DeleteSvg from "@/components/svg/DeleteSvg"
 import Image from "next/image"
+import GlobalLoader from "@/components/Loader/GlobalLoader"
 import axios from "axios"
+import { useDispatch } from "react-redux"
+import { add_item } from "@/lib/redux/user_slice"
+import { Item } from "../../../../../../user"
+import { AppDispatch, useStoreselector } from "@/lib/redux/store"
+
+type form_attr = {
+  value: string
+  focus(): React.FocusEvent
+}
+
+type form_data = {
+  product_name: form_attr
+  product_price: form_attr
+  product_dec: form_attr
+  catagory_input: form_attr
+} & HTMLFormElement
 
 type image_slider_state = {
   num: number
@@ -13,10 +30,15 @@ type image_slider_state = {
 }
 
 const Add_intem = () => {
+  const user_id = useStoreselector((state) => state.users.data.id)
   const [image_slider, set_image_slider] = useState<image_slider_state[]>([]),
     scroll_ref = useRef<HTMLDivElement>(null),
     [catagory, set_catagory] = useState<string[]>([]),
-    [loading, set_loading] = useState<boolean>(false)
+    [loading, set_loading] = useState<boolean>(false),
+    form_ref = useRef<form_data>(null),
+    dispatch = useDispatch<AppDispatch>()
+
+  // ! scroll slider
 
   useEffect(() => {
     scroll_ref.current!.scrollTo({
@@ -24,14 +46,66 @@ const Add_intem = () => {
       behavior: "smooth",
     })
   }, [image_slider])
+
+  // ! submit handler
+
+  const handle_submit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    set_loading(true)
+
+    try {
+      const data = form_ref.current
+      if (catagory.length === 0) {
+        toast.error("You must add atleast one catagory", react_toast_style)
+        data?.catagory_input.focus()
+        return
+      } else if (image_slider.length === 0) {
+        toast.error(
+          "you must add atleast one picture of product",
+          react_toast_style
+        )
+        return
+      } else if (image_slider.find((i) => !i.link)) {
+        toast.error("please fill all image links", react_toast_style)
+        return
+      } else {
+        const obj: Omit<Item, "ratings" | "Sold" | "Odered" | "reviewes"> = {
+          catagory,
+          image: image_slider.map((i) => i.link!),
+          name: data!.product_name.value,
+          price: data!.product_price.value,
+          description: data!.product_dec.value,
+          id: user_id,
+        }
+        const res = await axios.post(
+          process.env.NEXT_PUBLIC_API! + "/user/comp/add"
+        )
+        toast.success(res.data.msg, react_toast_style)
+        if (res.status < 400) {
+          dispatch(add_item(obj))
+        }
+      }
+    } catch {
+    } finally {
+      set_loading(false)
+    }
+  }
+
   return (
     <div className={css.add_item}>
-      <form>
+      <form
+        onSubmit={handle_submit}
+        ref={form_ref}
+      >
         <input
+          name='product_name'
+          required={true}
           type='text'
           placeholder='Enter Product Name'
         />
         <input
+          name='product_price'
+          required={true}
           type='number'
           placeholder='Enter Price'
         />
@@ -44,8 +118,12 @@ const Add_intem = () => {
               className={css.add_button}
               type='button'
               onClick={() => {
-                if(image_slider.find((i)=>!i.link)){
-                  toast.error('plese enter image in all box',react_toast_style)
+                if (image_slider.find((i) => !i.link)) {
+                  toast.error("plese enter image in all box", react_toast_style)
+                  scroll_ref.current!.scrollTo({
+                    left: -scroll_ref.current!.scrollWidth,
+                    behavior: "smooth",
+                  })
                   return
                 }
                 if (image_slider.length > 5) {
@@ -140,12 +218,13 @@ const Add_intem = () => {
           ))}
         </div>
         <textarea
-          name=''
-          id=''
+          required={true}
+          name='product_dec'
           placeholder='Add Discription'
         ></textarea>
         <section>
           <input
+            name='catagory_input'
             className='catagory-input'
             type='text'
             placeholder='Add catagory'
@@ -177,7 +256,7 @@ const Add_intem = () => {
               <span key={`catagory-${num}`}>
                 <span>{i}</span>
                 <button
-                type="button"
+                  type='button'
                   onClick={() => {
                     set_catagory(catagory.filter((item) => item !== i))
                   }}
@@ -191,8 +270,9 @@ const Add_intem = () => {
         <button
           className={css.submit_button}
           type='submit'
+          disabled={loading}
         >
-          Add
+          {loading ? <GlobalLoader /> : "Add"}
         </button>
       </form>
     </div>

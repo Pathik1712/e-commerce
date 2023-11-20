@@ -21,10 +21,10 @@ export default function RootLayout({
       <body className={css.home}>
         <Sessioncontext>
           <Reduxprovider>
-            <BodyHeight />
-            <ToasterContext />
-            <ReduxData />
-            {children}
+              <BodyHeight />
+              <ToasterContext />
+              <ReduxData />
+              {children}
           </Reduxprovider>
         </Sessioncontext>
       </body>

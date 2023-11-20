@@ -87,17 +87,18 @@ model Item {
   name         String
   price        Float
   mrp          Float?
-  catagory     String?
+  catagory     String[]
   image        String[]
   ratings      Float    @default(0)
   seller       User     @relation("items", fields: [seller_id], references: [id])
   seller_id    String   @db.ObjectId
-  whishlist    User     @relation("whishlist", fields: [whishlist_id], references: [id])
-  whishlist_id String   @db.ObjectId
-  cart         User     @relation("cart", fields: [cart_id], references: [id])
-  cart_id      String   @db.ObjectId
+  whishlist    User?     @relation("whishlist", fields: [whishlist_id], references: [id])
+  whishlist_id String?   @db.ObjectId
+  cart         User?     @relation("cart", fields: [cart_id], references: [id])
+  cart_id      String?   @db.ObjectId
   Sold         Sold[]
   reviewes     Json[]
+  description String
   Odered       Odered[]
 }
 
