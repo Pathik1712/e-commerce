@@ -5,6 +5,7 @@ import { Item } from "../../../../../../user"
 export const POST = async (req: Request) => {
   const data: Item = await req.json()
   try {
+    console.log(data.id)
     await prisma.user.update({
       data: {
         items: {
@@ -13,6 +14,7 @@ export const POST = async (req: Request) => {
             price: data.price,
             image: data.image,
             catagory: data.catagory,
+            description:data.description 
           },
         },
       },

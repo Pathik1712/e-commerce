@@ -52,7 +52,7 @@ type Item = {
   image: string[]
   ratings: Float
   Sold: Sold[]
-  description: String
+  description: string
   reviewes: [
     {
       ratings: Number

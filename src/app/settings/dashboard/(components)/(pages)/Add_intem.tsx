@@ -52,7 +52,6 @@ const Add_intem = () => {
   const handle_submit = async (e: React.FormEvent) => {
     e.preventDefault()
     set_loading(true)
-
     try {
       const data = form_ref.current
       if (catagory.length === 0) {
@@ -78,7 +77,8 @@ const Add_intem = () => {
           id: user_id,
         }
         const res = await axios.post(
-          process.env.NEXT_PUBLIC_API! + "/user/comp/add"
+          process.env.NEXT_PUBLIC_API! + "/user/comp/add",
+          obj
         )
         toast.success(res.data.msg, react_toast_style)
         if (res.status < 400) {
