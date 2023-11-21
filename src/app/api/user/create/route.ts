@@ -37,6 +37,12 @@ export const GET = async (req: Request) => {
       email: email!,
     },
     select: { 
+      adress:true,
+      image:true,
+      cart:true,
+      sold_items:true,
+      whishlist:true,
+      name:true,
       id:true,
       email:true,
       items:true,
@@ -49,6 +55,5 @@ export const GET = async (req: Request) => {
       },
     },
   })
-  console.log(res)
   return NextResponse.json(res)
 }

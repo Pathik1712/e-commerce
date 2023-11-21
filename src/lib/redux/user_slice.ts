@@ -30,10 +30,6 @@ const user_sliece = createSlice({
         },
       }
     },
-    persist_state(state,{payload}){
-      state.data=payload
-      state.status='sucess'
-    },
     add_item(state,{payload}){
       state.data.availbel_items?.push(payload)
     }
@@ -52,6 +48,6 @@ const user_sliece = createSlice({
   },
 })
 
-export const { register_company,persist_state,add_item } = user_sliece.actions
+export const { register_company,add_item } = user_sliece.actions
 
 export default user_sliece.reducer

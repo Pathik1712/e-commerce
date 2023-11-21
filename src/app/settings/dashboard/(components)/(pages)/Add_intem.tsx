@@ -76,13 +76,16 @@ const Add_intem = () => {
           description: data!.product_dec.value,
           id: user_id,
         }
-        const res = await axios.post(
+        try{
+          const res = await axios.post(
           process.env.NEXT_PUBLIC_API! + "/user/comp/add",
           obj
-        )
-        toast.success(res.data.msg, react_toast_style)
-        if (res.status < 400) {
+          )
+          toast.success(res.data.msg, react_toast_style)
           dispatch(add_item(obj))
+        }
+        catch{
+          toast.error('something went wrong please try again',react_toast_style)
         }
       }
     } catch {
