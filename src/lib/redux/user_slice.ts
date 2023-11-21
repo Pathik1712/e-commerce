@@ -31,7 +31,7 @@ const user_sliece = createSlice({
       }
     },
     add_item(state,{payload}){
-      state.data.availbel_items?.push(payload)
+      state.data.items?.push(payload)
     }
   },
   extraReducers(builder) {

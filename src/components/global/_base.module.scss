@@ -33,3 +33,11 @@ $window-height: var(--windowHeight);
   height: 100%;
   width: 100%;
 }
+
+%scroll-hide{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar{
+    display: none;
+  }
+}

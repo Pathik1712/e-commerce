@@ -9,7 +9,7 @@ type User_state = {
   image?: string
   emailVerified?: Date
   type: "buyer" | "seller"
-  availbel_items: Item[]
+  items: Item[]
   whishlist: Item[]
   cart: Item[]
   sold_items: Sold[]

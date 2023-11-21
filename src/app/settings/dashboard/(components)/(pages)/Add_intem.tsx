@@ -49,7 +49,7 @@ const Add_intem = () => {
 
   // ! submit handler
 
-  const handle_submit = async (e: React.FormEvent) => {
+  const handle_submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     set_loading(true)
     try {
@@ -76,16 +76,21 @@ const Add_intem = () => {
           description: data!.product_dec.value,
           id: user_id,
         }
-        try{
+        try {
           const res = await axios.post(
-          process.env.NEXT_PUBLIC_API! + "/user/comp/add",
-          obj
+            process.env.NEXT_PUBLIC_API! + "/user/comp/add",
+            obj
           )
           toast.success(res.data.msg, react_toast_style)
           dispatch(add_item(obj))
-        }
-        catch{
-          toast.error('something went wrong please try again',react_toast_style)
+          set_catagory([])
+          set_image_slider([])
+          form_ref.current?.reset()
+        } catch {
+          toast.error(
+            "something went wrong please try again",
+            react_toast_style
+          )
         }
       }
     } catch {
