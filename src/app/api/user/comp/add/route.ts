@@ -5,7 +5,7 @@ import { Item } from "../../../../../../user"
 export const POST = async (req: Request) => {
   const data: Item = await req.json()
   try {
-    const res=await prisma.user.update({
+    const res = await prisma.user.update({
       data: {
         items: {
           create: {
@@ -13,12 +13,35 @@ export const POST = async (req: Request) => {
             price: parseFloat(data.price),
             image: data.image,
             catagory: data.catagory,
-            description:data.description 
+            description: data.description,
           },
         },
       },
       where: {
         id: data.id,
+      },
+    })
+    return NextResponse.json(
+      { msg: "product added successfully" },
+      { status: 200 }
+    )
+  } catch {
+    return NextResponse.json({ msg: "something went wrong" }, { status: 500 })
+  }
+}
+
+export const PUT = async (req: Request) => {
+  console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+  const data: Item = await req.json()
+  try {
+    await prisma.item.update({
+      where: { id: data.id },
+      data: {
+        price: data.price,
+        mrp: data.mrp,
+        image: data.image,
+        description: data.description,
+        catagory: data.catagory,
       },
     })
     return NextResponse.json(
