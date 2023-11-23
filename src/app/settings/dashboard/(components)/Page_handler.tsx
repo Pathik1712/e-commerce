@@ -8,7 +8,7 @@ type props = {
   img: string
   name: string
 }
-type path_names='items'|'charts'|'orders'
+type path_names='items'|'charts'|'orders'|'update'
 
 const Page_handler = ({ img, name }: props) => {
   const search = useSearchParams()
@@ -17,12 +17,16 @@ const Page_handler = ({ img, name }: props) => {
     if(path==='items'){
       return <Items/>
     }
+    else if(path==='update'){
+      return
+    }
   }
   return (
     <>
       <Dashnav
         img={img}
         name={name}
+        location={path}
       />
       {!search.has("path") ? <Add_intem /> :page() }
     </>
