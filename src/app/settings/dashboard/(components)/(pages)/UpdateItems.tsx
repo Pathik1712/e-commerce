@@ -34,7 +34,6 @@ type image_slider_state = {
 }
 
 const UpdateItems = ({ id }: Props) => {
-  const user_id = useStoreselector((state) => state.users.data.id)
   const item_data = useStoreselector((state) => state.users.data.items)?.find(
     (i) => i.id === id
   )
@@ -88,9 +87,9 @@ const UpdateItems = ({ id }: Props) => {
           catagory,
           image: image_slider.map((i) => i.link!),
           name: data!.product_name.value,
-          price: data!.product_price.value,
+          price:parseFloat(data!.product_price.value),
           description: data!.product_dec.value,
-          mrp: data?.product_discount.value,
+          mrp:data?.hasAttribute('product_discount')?parseFloat(data.product_discount.value):null,
           id: id!,
         }
         try {
@@ -100,9 +99,6 @@ const UpdateItems = ({ id }: Props) => {
           )
           toast.success(res.data.msg, react_toast_style)
           dispatch(add_item(obj))
-          set_catagory([])
-          set_image_slider([])
-          form_ref.current?.reset()
         } catch {
           toast.error(
             "something went wrong please try again",

@@ -31,7 +31,6 @@ export const POST = async (req: Request) => {
 }
 
 export const PUT = async (req: Request) => {
-  console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
   const data: Item = await req.json()
   try {
     await prisma.item.update({
@@ -47,8 +46,17 @@ export const PUT = async (req: Request) => {
     return NextResponse.json(
       { msg: "product added successfully" },
       { status: 200 }
-    )
-  } catch {
+      )
+    } catch(e) {
     return NextResponse.json({ msg: "something went wrong" }, { status: 500 })
   }
+}
+
+
+export const DELETE=async(req:Request)=>{
+  const url=new URL(req.url)
+  const id=url.searchParams.get('id')!
+  await prisma.item.delete({where:{
+    id
+  }})
 }
