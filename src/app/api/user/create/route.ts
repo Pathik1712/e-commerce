@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma"
 import bcrypt from "bcrypt"
 import { NextResponse } from "next/server"
+import { Address } from "../../../../../user"
+import { create } from "domain"
 
 type body = {
   email: string
@@ -36,24 +38,75 @@ export const GET = async (req: Request) => {
     where: {
       email: email!,
     },
-    select: { 
-      adress:true,
-      image:true,
-      cart:true,
-      sold_items:true,
-      whishlist:true,
-      name:true,
-      id:true,
-      email:true,
-      items:true,
-      phone:true,
-      password:false,
+    select: {
+      adress: true,
+      image: true,
+      cart: true,
+      sold_items: true,
+      whishlist: true,
+      name: true,
+      id: true,
+      email: true,
+      items: true,
+      phone: true,
+      password: false,
       company_detail: {
-        include:{
-          address:true
-        }
+        include: {
+          address: true,
+        },
       },
     },
   })
   return NextResponse.json(res)
+}
+
+export const PUT = async (req: Request) => {
+  const data: Address & { user_id: string } = await req.json()
+  try {
+    if (!data.id) {
+      await prisma.user.update({
+        data: {
+          adress: {
+            create: {
+              city: data.city,
+              country: data.country,
+              mobile: data.mobile,
+              name: data.name,
+              state: data.state,
+              adress: data.adress,
+              pincode: data.pincode,
+            },
+          },
+        },
+        where: {
+          id: data.user_id,
+        },
+      })
+    }
+    else{
+      await prisma.user.update({
+        data:{
+          adress:{
+            update:{
+              where:{
+                id:data.id
+              },
+              data:{
+                city: data.city,
+                country: data.country,
+                mobile: data.mobile,
+                name: data.name,
+                state: data.state,
+                adress: data.adress,
+                pincode: data.pincode,
+              }
+            }
+          }
+        },where:{id: data.user_id,}
+      })
+    }
+    return new NextResponse()
+  } catch  {
+    return new NextResponse("something went wrong", { status: 400 })
+  }
 }

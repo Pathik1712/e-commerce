@@ -30,9 +30,16 @@ const user_sliece = createSlice({
         },
       }
     },
-    add_item(state,{payload}){
+    add_item(state, { payload }) {
       state.data.items?.push(payload)
-    }
+    },
+    upsert_adderee(state, { payload }) {
+      state.data.adress?.length === 0
+        ? state.data.adress.push(payload)
+        : state.data.adress !== undefined
+        ? (state.data.adress[0] = { ...payload })
+        : ""
+    },
   },
   extraReducers(builder) {
     builder.addCase(thunk.pending, (state, { payload }) => {
@@ -48,6 +55,6 @@ const user_sliece = createSlice({
   },
 })
 
-export const { register_company,add_item } = user_sliece.actions
+export const { register_company, add_item,upsert_adderee } = user_sliece.actions
 
 export default user_sliece.reducer
