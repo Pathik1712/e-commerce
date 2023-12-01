@@ -77,21 +77,21 @@ export const PUT = async (req: Request) => {
               pincode: data.pincode,
             },
           },
+          phone: data.mobile,
         },
         where: {
           id: data.user_id,
         },
       })
-    }
-    else{
+    } else {
       await prisma.user.update({
-        data:{
-          adress:{
-            update:{
-              where:{
-                id:data.id
+        data: {
+          adress: {
+            update: {
+              where: {
+                id: data.id,
               },
-              data:{
+              data: {
                 city: data.city,
                 country: data.country,
                 mobile: data.mobile,
@@ -99,14 +99,17 @@ export const PUT = async (req: Request) => {
                 state: data.state,
                 adress: data.adress,
                 pincode: data.pincode,
-              }
-            }
-          }
-        },where:{id: data.user_id,}
+              },
+            },
+          },
+          phone: data.mobile,
+        },
+        where: { id: data.user_id },
       })
     }
     return new NextResponse()
-  } catch  {
+  } catch(e) {
+    console.log(e)
     return new NextResponse("something went wrong", { status: 400 })
   }
 }

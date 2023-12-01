@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 import css from "../dashboard/style.module.scss"
 import Logo from "@/components/svg/Logo"
 import { Country, State, City } from "country-state-city"
@@ -17,7 +17,6 @@ import { upsert_adderee } from "@/lib/redux/user_slice"
 interface data extends HTMLFormElement {
   user_name: { value: string; focus(): FocusEvent }
   user_number: { value: string; focus(): FocusEvent }
-  city: { value: string }
   user_address: { value: string }
   user_pincode: { value: string; focus(): FocusEvent }
 }
@@ -25,6 +24,7 @@ interface data extends HTMLFormElement {
 const Account_page = () => {
   const [country, set_country] = useState(""),
     [state, set_state] = useState(""),
+    [city, set_city] = useState(""),
     [fetching, set_fetching] = useState(false),
     form = useRef<HTMLFormElement>(null),
     user_data = useStoreselector((staet) => staet.users.data),
@@ -36,7 +36,7 @@ const Account_page = () => {
     set_fetching(true)
     const number_regex = /^\d{10}$/
     const pincode_regex = /^\d{6}$/
-    const { user_number, user_name, city, user_address, user_pincode } =
+    const { user_number, user_name, user_address, user_pincode } =
       form.current as data
     if (!country) {
       toast.error("Must select country", react_toast_style)
@@ -50,7 +50,7 @@ const Account_page = () => {
         return
       }
     }
-    if (!city.value) {
+    if (!city) {
       if (City.getCitiesOfState(country, state).length !== 0) {
         toast.error("Must select city", react_toast_style)
         set_fetching(false)
@@ -72,7 +72,7 @@ const Account_page = () => {
       return
     }
     const obj: Address & { user_id: string } = {
-      city: city.value,
+      city: city,
       country: Country.getCountryByCode(country)?.name!,
       state: State.getStateByCodeAndCountry(state, country)?.name!,
       name: user_name.value,
@@ -83,7 +83,7 @@ const Account_page = () => {
       id:
         user_data?.adress?.length === 0
           ? ""
-          : user_data?.adress && user_data.adress[0].pincode,
+          : user_data?.adress && user_data.adress[0].id,
     }
     try {
       await http.put("user/create", obj)
@@ -96,7 +96,28 @@ const Account_page = () => {
       set_fetching(false)
     }
   }
-  console.log(user_data?.adress)
+
+  useEffect(() => {
+    if (user_data!==undefined && user_data?.adress?.length !== 0 ) {
+      console.log(user_data)
+      const counter_isocode = Country.getAllCountries().find((i) => {
+        if (i.name === user_data?.adress?.[0].country) {
+          return i
+        }
+      })
+      const state_isocode = State.getStatesOfCountry(
+        counter_isocode?.isoCode
+      ).find((i) => {
+        if (i.name === user_data?.adress?.[0].state) {
+          return i
+        }
+      })
+      set_country(counter_isocode!.isoCode)
+      set_state(state_isocode!.isoCode)
+      set_city(user_data!.adress![0].city)
+    }
+  }, [user_data])
+
   return redux_loading === "fetchin" ? (
     <LoadingPage />
   ) : (
@@ -146,11 +167,7 @@ const Account_page = () => {
         <div>
           <h2>country:</h2>
           <select
-            defaultValue={
-              user_data?.adress?.length === 0
-                ? ""
-                : (user_data?.adress && user_data.adress[0].country)
-            }
+            value={country}
             onChange={(e) => set_country(e.target.value)}
           >
             <option
@@ -174,11 +191,7 @@ const Account_page = () => {
         <div>
           <h2>state:</h2>
           <select
-            defaultValue={
-              user_data?.adress?.length === 0
-                ? ""
-                : user_data?.adress && user_data.adress[0].state
-            }
+            value={state}
             name=""
             onChange={(e) => {
               set_state(e.target.value)
@@ -214,11 +227,8 @@ const Account_page = () => {
           <h2>City:</h2>
           <select
             name="city"
-            defaultValue={
-              user_data?.adress?.length === 0
-                ? ""
-                : user_data?.adress && user_data.adress[0].city
-            }
+            value={city}
+            onChange={(e) => set_city(e.target.value)}
           >
             <option
               key={0}

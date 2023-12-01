@@ -46,17 +46,18 @@ export const PUT = async (req: Request) => {
     return NextResponse.json(
       { msg: "product added successfully" },
       { status: 200 }
-      )
-    } catch(e) {
+    )
+  } catch {
     return NextResponse.json({ msg: "something went wrong" }, { status: 500 })
   }
 }
 
-
-export const DELETE=async(req:Request)=>{
-  const url=new URL(req.url)
-  const id=url.searchParams.get('id')!
-  await prisma.item.delete({where:{
-    id
-  }})
+export const DELETE = async (req: Request) => {
+  const url = new URL(req.url)
+  const id = url.searchParams.get("id")!
+  await prisma.item.delete({
+    where: {
+      id,
+    },
+  })
 }

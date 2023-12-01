@@ -75,21 +75,24 @@ const UpdateItems = ({ id }: Props) => {
       } else if (image_slider.find((i) => !i.link)) {
         toast.error("please fill all image links", react_toast_style)
         return
-      } else if (data?.product_discount.value &&
-          parseFloat(data.product_price.value) <
+      } else if (
+        data?.product_discount.value &&
+        parseFloat(data.product_price.value) <
           parseFloat(data.product_discount.value)
-        ) {
-          toast.error("discount is more than product price", react_toast_style)
-          return
-        
+      ) {
+        toast.error("discount is more than product price", react_toast_style)
+        return
       } else {
         const obj: Omit<Item, "ratings" | "Sold" | "Odered" | "reviewes"> = {
           catagory,
           image: image_slider.map((i) => i.link!),
           name: data!.product_name.value,
-          price:parseFloat(data!.product_price.value),
+          price: parseFloat(data!.product_price.value),
           description: data!.product_dec.value,
-          mrp:data?.hasAttribute('product_discount')?parseFloat(data.product_discount.value):null,
+          mrp:
+            data?.product_discount.value === ""
+              ? null
+              : parseFloat(data!.product_discount.value),
           id: id!,
         }
         try {
