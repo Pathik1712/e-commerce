@@ -8,6 +8,45 @@
   display: grid;
   padding-top: 1rem;
   overflow: hidden;
+  position: relative;
+  @media (max-width: base.$sm) {
+    width: 80%;
+  }
+  > button {
+    cursor: pointer;
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    top: 3%;
+    right: 5%;
+    @media (max-width: base.$sm) {
+      right: 1%;
+    }
+
+    > svg {
+      @media (max-width: base.$sm) {
+        height: 1.5rem;
+      }
+      height: 2rem;
+      path {
+        stroke: #e31b23;
+      }
+    }
+  }
+  .fillIcon {
+    > svg {
+      fill: #e31b23;
+      animation: heart 1.3s 1 forwards;
+    }
+    @keyframes heart {
+      50% {
+        transform: scale(200%);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  }
   > img {
     justify-self: center;
     max-height: 15rem;
@@ -31,20 +70,27 @@
       display: inline;
       color: black;
       font-weight: 700;
-      > span {
+      .mrp {
         display: none;
       }
     }
     .discount {
-      text-decoration: line-through;
-      color: gray;
-      text-decoration-thickness: 2px;
-      > span {
-        margin-left: 0.4rem;
+      .price {
+        text-decoration: line-through;
+        color: gray;
+        text-decoration-thickness: 2px;
+      }
+      @media (max-width: base.$sm) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+      .mrp {
+        margin-left: 1rem;
         display: inline-block;
         background-color: base.$blue;
         color: white;
-        text-decoration: none;
         padding-inline: 0.5rem;
         border-radius: 4px;
       }
@@ -66,5 +112,13 @@
         height: 1rem;
       }
     }
+  }
+  >section{
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    color: rgb(88, 88, 88);
+    font-weight: 600;
   }
 }

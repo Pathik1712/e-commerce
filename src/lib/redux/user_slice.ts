@@ -41,7 +41,18 @@ const user_sliece = createSlice({
         : ""
     },
     update_item(state, { payload }) {
-      state.data.items?.map((i) => (i.id === payload.id ? { ...payload } : i))
+      state.data.items = state.data.items?.map((i) =>
+        i.id === payload.id ? { ...payload } : i
+      )
+    },
+    add_whishlist(state, { payload }) {
+      if (!payload.type) {
+        state.data.whishlist = state.data.whishlist?.filter(
+          (i) => i.id !== payload.id
+        )
+      } else {
+        state.data.whishlist?.push(payload.item)
+      }
     },
   },
   extraReducers(builder) {
@@ -58,7 +69,12 @@ const user_sliece = createSlice({
   },
 })
 
-export const { register_company, add_item, upsert_adderee, update_item } =
-  user_sliece.actions
+export const {
+  register_company,
+  add_item,
+  upsert_adderee,
+  update_item,
+  add_whishlist,
+} = user_sliece.actions
 
 export default user_sliece.reducer

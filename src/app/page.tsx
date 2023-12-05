@@ -19,6 +19,8 @@ export default async function Home() {
               title={i.name}
               price={i.price}
               mrp={i.mrp}
+              id={i.id!}
+              item={i}
               key={num}
             />
           ))}

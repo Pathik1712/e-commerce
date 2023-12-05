@@ -8,11 +8,13 @@
   display: grid;
   grid-template-rows: auto 1fr;
   >section{
+    margin-inline:auto ;
     box-sizing: border-box;
     padding-bottom: 4rem;
     padding-top: 2rem;
     height: 100%;
     width:100%;
+    width: fit-content;
     overflow-y: scroll;
     @extend %scroll-hide;
     display: flex;

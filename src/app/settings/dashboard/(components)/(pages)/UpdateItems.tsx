@@ -135,7 +135,8 @@ const UpdateItems = ({ id }: Props) => {
           placeholder="Enter Price"
         />
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
           name="product_discount"
           placeholder="Enter Discount"
           defaultValue={item_data?.mrp}

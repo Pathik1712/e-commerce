@@ -10,6 +10,9 @@ type body = {
   password: string
   username: string
 }
+
+type patch_update_type = "whishlist" | "order"
+
 export const POST = async (req: Request) => {
   const body: body = await req.json()
   const hash_pass = await bcrypt.hash(body.password, 10)
@@ -108,8 +111,49 @@ export const PUT = async (req: Request) => {
       })
     }
     return new NextResponse()
-  } catch(e) {
+  } catch (e) {
     console.log(e)
     return new NextResponse("something went wrong", { status: 400 })
   }
+}
+
+export const PATCH = async (req: Request) => {
+  const res = await req.json()
+  const type = new URL(req.url).searchParams.get(
+    "data_to_update"
+  ) as patch_update_type
+  if (type === "whishlist") {
+    const add_remove = new URL(req.url).searchParams.get("type") as
+      | "true"
+      | "false"
+
+      console.log( new URL(req.url).searchParams.get("type"))
+
+    if (add_remove === "true") {
+      await prisma.user.update({
+        where: { id: res.user_id },
+        data: {
+          whishlist: {
+            connect: {
+              id: res.id,
+            },
+          },
+        },
+      })
+    } else {
+      await prisma.user.update({
+        where: {
+          id: res.user_id,
+        },
+        data: {
+          whishlist: {
+            disconnect: {
+              id: res.id,
+            },
+          },
+        },
+      })
+    }
+  }
+  return new NextResponse("successfull")
 }
