@@ -32,6 +32,8 @@ export const POST = async (req: Request) => {
 
 export const PUT = async (req: Request) => {
   const data: Item = await req.json()
+  
+  console.log(await prisma.item.findFirst({ where: { id: data.id } }),data.id)
   try {
     await prisma.item.update({
       where: { id: data.id },
@@ -44,10 +46,10 @@ export const PUT = async (req: Request) => {
       },
     })
     return NextResponse.json(
-      { msg: "product added successfully" },
+      { msg: "product updated successfully" },
       { status: 200 }
     )
-  } catch {
+  } catch (e) {
     return NextResponse.json({ msg: "something went wrong" }, { status: 500 })
   }
 }

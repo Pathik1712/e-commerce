@@ -1,0 +1,70 @@
+@use "../global/base.module";
+
+.card {
+  height: min-content;
+  border: 1px solid gray;
+  width: 20rem;
+  border-radius: 5px;
+  display: grid;
+  padding-top: 1rem;
+  overflow: hidden;
+  > img {
+    justify-self: center;
+    max-height: 15rem;
+    min-height: 10rem;
+    width: min-content;
+    border-radius: inherit;
+  }
+  > h3 {
+    text-overflow: ellipsis;
+    color: transparent;
+    background-image: linear-gradient(to right, #b24592, #f15f79);
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+  }
+  > div {
+    display: flex;
+    align-items: center;
+    padding-inline: 2rem;
+    > p {
+      display: inline;
+      color: black;
+      font-weight: 700;
+      > span {
+        display: none;
+      }
+    }
+    .discount {
+      text-decoration: line-through;
+      color: gray;
+      text-decoration-thickness: 2px;
+      > span {
+        margin-left: 0.4rem;
+        display: inline-block;
+        background-color: base.$blue;
+        color: white;
+        text-decoration: none;
+        padding-inline: 0.5rem;
+        border-radius: 4px;
+      }
+    }
+    > span {
+      background-color: green;
+      height: 1.5rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      font-weight: bolder;
+      margin-left: auto;
+      gap: 10px;
+      padding-inline: 1rem;
+      border-radius: 4px;
+      > svg {
+        height: 1rem;
+      }
+    }
+  }
+}

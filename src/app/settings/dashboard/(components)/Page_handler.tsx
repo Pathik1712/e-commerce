@@ -3,6 +3,7 @@ import Add_intem from "./(pages)/Add_intem"
 import Dashnav from "./(pages)/Dashnav"
 import Items from "./(pages)/Items"
 import UpdateItems from "./(pages)/UpdateItems"
+import Orders from "./(pages)/Orders"
 import { useSearchParams } from "next/navigation"
 
 type props = {
@@ -20,6 +21,9 @@ const Page_handler = ({ img, name }: props) => {
     }
     else if(path==='update'){
       return <UpdateItems id={search.get('id')}/>
+    }
+    else if(path==='orders'){
+      return <Orders/>
     }
   }
   return (

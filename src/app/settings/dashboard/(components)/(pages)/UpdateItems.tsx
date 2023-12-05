@@ -8,7 +8,7 @@ import Image from "next/image"
 import GlobalLoader from "@/components/Loader/GlobalLoader"
 import axios from "axios"
 import { useDispatch } from "react-redux"
-import { add_item } from "@/lib/redux/user_slice"
+import { update_item } from "@/lib/redux/user_slice"
 import { Item } from "../../../../../../user"
 import { AppDispatch, useStoreselector } from "@/lib/redux/store"
 
@@ -101,7 +101,7 @@ const UpdateItems = ({ id }: Props) => {
             obj
           )
           toast.success(res.data.msg, react_toast_style)
-          dispatch(add_item(obj))
+          dispatch(update_item(obj))
         } catch {
           toast.error(
             "something went wrong please try again",
