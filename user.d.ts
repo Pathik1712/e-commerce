@@ -60,6 +60,7 @@ type Item = {
     }
   ]
   Odered: Order[]
+  whishlist_id: string[]
 }
 
 type Sold = {

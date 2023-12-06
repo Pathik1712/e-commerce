@@ -113,20 +113,20 @@ const Utility = () => {
         <div>
           <h2>Company Name:</h2>
           <input
-            name='company_name'
+            name="company_name"
             required
-            type='text'
-            placeholder='Company name'
+            type="text"
+            placeholder="Company name"
           />
         </div>
         <div>
           <h2>phone number:</h2>
           <input
-            name='company_number'
+            name="company_number"
             required
-            type='text'
-            placeholder='Enter Phonenumber'
-            inputMode='tel'
+            type="text"
+            placeholder="Enter Phonenumber"
+            inputMode="tel"
           />
         </div>
         <div>
@@ -135,14 +135,14 @@ const Utility = () => {
             disabled={fetching}
             required
             value={image}
-            type='text'
-            placeholder='Company logo'
+            type="text"
+            placeholder="Company logo"
             onChange={(e) => handle_image(e.target.value)}
           />
           {image && (
             <Image
               src={image}
-              alt='not found'
+              alt="not found"
               height={200}
               width={200}
             />
@@ -156,8 +156,7 @@ const Utility = () => {
           >
             <option
               key={0}
-              value=''
-              selected
+              value=""
               disabled
               hidden
             >
@@ -176,7 +175,7 @@ const Utility = () => {
         <div>
           <h2>state:</h2>
           <select
-            name=''
+            name=""
             value={state}
             onChange={(e) => {
               set_state(e.target.value)
@@ -184,8 +183,7 @@ const Utility = () => {
           >
             <option
               key={0}
-              value=''
-              selected
+              value=""
               disabled
               hidden
             >
@@ -211,11 +209,11 @@ const Utility = () => {
         </div>
         <div>
           <h2>City:</h2>
-          <select name='city'>
+          <select name="city">
             <option
-              key={0}
-              value=''
               selected
+              key={0}
+              value=""
               disabled
               hidden
             >
@@ -240,7 +238,7 @@ const Utility = () => {
           </select>
         </div>
         <button
-          type='submit'
+          type="submit"
           disabled={fetching}
         >
           {fetching ? <GlobalLoader /> : "Continue"}

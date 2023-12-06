@@ -43,6 +43,7 @@ const Card = ({ img, rating, title, price, mrp, id, item }: Props) => {
   return (
     <div className={css.card}>
       <button
+        disabled={data == null}
         className={whishList ? css.fillIcon : ""}
         onClick={async () => {
           dispatch(add_whishlist({ id, type: !whishList, item }))

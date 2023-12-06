@@ -20,13 +20,14 @@ model User {
   emailVerified  DateTime?
   type           Seller    @default(buyer)
   items          Item[]    @relation("items")
-  whishlist      Item[]    @relation("whishlist")
+  whishlist      Item[]    @relation("whishlist", fields: [whishlist_id], references: [id])
+  whishlist_id   String[]  @db.ObjectId
   cart           Item[]    @relation("cart")
   sold_items     Sold[]
   adress         Adress[]
   Account        Account[]
-  company_detail Company?   @relation(fields: [companyId], references: [id])
-  companyId      String?    @db.ObjectId
+  company_detail Company?  @relation(fields: [companyId], references: [id])
+  companyId      String?   @db.ObjectId
 }
 
 model Account {
@@ -92,13 +93,13 @@ model Item {
   ratings      Float    @default(0)
   seller       User     @relation("items", fields: [seller_id], references: [id])
   seller_id    String   @db.ObjectId
-  whishlist    User?     @relation("whishlist", fields: [whishlist_id], references: [id])
-  whishlist_id String?   @db.ObjectId
-  cart         User?     @relation("cart", fields: [cart_id], references: [id])
-  cart_id      String?   @db.ObjectId
+  whishlist    User[]   @relation("whishlist", fields: [whishlist_id], references: [id])
+  whishlist_id String[] @db.ObjectId
+  cart         User?    @relation("cart", fields: [cart_id], references: [id])
+  cart_id      String?  @db.ObjectId
   Sold         Sold[]
   reviewes     Json[]
-  description String
+  description  String
   Odered       Odered[]
 }
 

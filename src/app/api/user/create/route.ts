@@ -48,6 +48,7 @@ export const GET = async (req: Request) => {
       sold_items: true,
       whishlist: true,
       name: true,
+      type:true,
       id: true,
       email: true,
       items: true,

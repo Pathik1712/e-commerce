@@ -13,10 +13,9 @@ const Dashboard = () => {
   if (status === "rejected") {
     redirect("/")
   }
-
   return (
     <>
-      {data.type === "buyer" && <Utility />}
+      {(data.type === "buyer" || data.type == null) && <Utility />}
       {data.type !== "buyer" && (
         <Page_handler
           img={data.company_detail?.company_logo!}
