@@ -25,7 +25,7 @@ const Items = () => {
               ))}
             </section>
             <p>price:{i.mrp != null ? i.mrp : i.price}</p>
-            <p className={css.whishlist}><Cart/> whishlist count: { i.whishlist_id.length }</p>
+            <p className={css.whishlist}><Cart/> whishlist count: { i.whishlist_id?.length }</p>
             <div>
               {i.catagory.map((catagory, catagory_num) => (
                 <span key={`items-${num}-catagory-${catagory_num}`}>

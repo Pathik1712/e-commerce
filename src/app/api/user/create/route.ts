@@ -54,6 +54,7 @@ export const GET = async (req: Request) => {
       items: true,
       phone: true,
       password: false,
+      orders:true,
       company_detail: {
         include: {
           address: true,

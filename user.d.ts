@@ -15,6 +15,7 @@ type User_state = {
   sold_items: Sold[]
   adress: Address[]
   company_detail: Company
+  orders: Order[]
 }
 
 type Address = {

@@ -1,0 +1,29 @@
+@use '../../../components/global/base.module';
+
+.whishlist_page{
+    @extend %full-area;
+    >nav{
+        display: flex;
+        align-items: center;
+        background-color: base.$pink;
+        color:white;
+        font-size: xx-large;
+        font-weight: 700;
+        padding-block:0.4rem ;
+        padding-inline:1.5rem ;
+        >button{
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: xx-large;
+            font-weight: 700;
+            cursor: pointer;
+            padding-right: 1rem;
+        }
+        >svg{
+            height: 2rem;
+            margin-left: auto;
+            fill: white;
+        }
+    }
+}

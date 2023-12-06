@@ -1,0 +1,22 @@
+@use '../../../components/global/base.module';
+
+.ordre_page{
+    @extend %full-area;
+    >nav{
+        background-color: base.$pink;
+        color:white;
+        font-size: xx-large;
+        font-weight: 700;
+        padding-block:0.4rem ;
+        padding-inline:1.5rem ;
+        >button{
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: xx-large;
+            font-weight: 700;
+            cursor: pointer;
+            padding-right: 1rem;
+        }
+    }
+}
