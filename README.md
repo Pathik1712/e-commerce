@@ -1,4 +1,4 @@
-Welcome to ShopEase Crafted with the simplicity and power of Next.js, our website offers a swift and delightful shopping experience. Dive into a world where technology meets convenience seamlessly. Welcome to the future of online retail with [Your E-commerce Project Name] powered by Next.js!
+Welcome to ShopEase Crafted with the simplicity and power of Next.js, My website offers a swift and delightful shopping experience. Dive into a world where technology meets convenience seamlessly. Welcome to the future of online retail with ShopEase powered by Next.js!
 
 ## Getting Started
 
