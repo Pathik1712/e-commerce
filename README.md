@@ -20,17 +20,28 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Library Used In This Project
 
->Type Script
+>Type Script 
+
 >Chart.js
+
 >Axios
+
 >Next Auth
+
 >Bcrypt
+
 >react-chartjs-2
+
 >Sass
+
 >country-state-city
+
 >React-hot-toast
+
 >Prisma
+
 >@reduxjs/toolkit
+
 >react-redux
 
 ## Deploy on Vercel
