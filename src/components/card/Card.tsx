@@ -2,13 +2,14 @@
 import Image from "next/image"
 import css from "./style.module.scss"
 import Ratings from "../svg/Ratings"
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import Heart from "../svg/Heart"
 import { AppDispatch, useStoreselector } from "@/lib/redux/store"
 import { http } from "@/func/Api"
 import { add_whishlist } from "@/lib/redux/user_slice"
 import { useDispatch } from "react-redux"
 import { Item } from "../../../user"
+import { formatePrice } from "@/func/PriceFormate"
 
 type Props = {
   img: string
@@ -18,9 +19,19 @@ type Props = {
   mrp: number
   id: string
   item: Item
+  Component?: React.ComponentType<any>
 }
 
-const Card = ({ img, rating, title, price, mrp, id, item }: Props) => {
+const Card = ({
+  img,
+  rating,
+  title,
+  price,
+  mrp,
+  id,
+  item,
+  Component,
+}: Props) => {
   const data = useStoreselector((state) => state.users.data)
 
   const [whishList, set_whishList] = useState(false),
@@ -65,8 +76,13 @@ const Card = ({ img, rating, title, price, mrp, id, item }: Props) => {
       <h3>{title}</h3>
       <div>
         <p className={mrp == null || mrp === 0 ? "" : css.discount}>
-          <span className={css.price}> &#8377; {price}</span>
-          <span className={css.mrp}>&#8377; {mrp}</span>
+          <span className={css.price}>
+            {" "}
+            &#8377; {formatePrice(price.toString())}
+          </span>
+          <span className={css.mrp}>
+            &#8377; {mrp && formatePrice(mrp.toString())}
+          </span>
         </p>
         <span>
           {rating}
@@ -79,6 +95,7 @@ const Card = ({ img, rating, title, price, mrp, id, item }: Props) => {
           .map((i) => i)
           .reduce((prev, cur) => prev + " , " + cur)}
       </section>
+      {Component && <Component />}
     </div>
   )
 }

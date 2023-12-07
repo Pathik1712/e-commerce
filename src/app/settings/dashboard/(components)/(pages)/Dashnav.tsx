@@ -32,12 +32,6 @@ const Dashnav = ({ img, name, location }: props) => {
           Order&#39;s
         </Link>
         <Link
-          href={"dashboard?path=charts"}
-          className={location === "charts" ? css.active : ""}
-        >
-          Charts
-        </Link>
-        <Link
           href={"dashboard?path=items"}
           className={location === "items" ? css.active : ""}
         >
@@ -63,12 +57,6 @@ const Dashnav = ({ img, name, location }: props) => {
             className={location === "orders" ? css.active_mobile : ""}
           >
             order&#39;s
-          </Link>
-          <Link
-            href={"dashboard?path=charts"}
-            className={location === "charts" ? css.active_mobile : ""}
-          >
-            charts
           </Link>
           <Link
             href={"dashboard?path=items"}

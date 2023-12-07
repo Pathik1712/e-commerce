@@ -373,6 +373,7 @@
         border-radius: 5px;
         max-height: 15rem;
         min-height: 10rem;
+        max-width: 20rem;
         width: min-content;
         object-fit: contain;
       }
@@ -440,6 +441,26 @@
         hsla(31, 90%, 76%, 1) 0%,
         hsla(302, 82%, 76%, 1) 100%
       );
+    }
+  }
+}
+
+.chart_page{
+  @extend %full-area;
+  @extend %scroll-hide;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  >div{
+    >h1{
+      text-align: center;
+      color: gray;
+      text-decoration: wavy underline;
+      text-decoration-color: #43cea2;
+    }
+    @media (max-width:550px) {
+      width: 20rem !important;
     }
   }
 }

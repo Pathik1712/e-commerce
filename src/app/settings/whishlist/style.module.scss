@@ -1,29 +1,65 @@
-@use '../../../components/global/base.module';
+@use "../../../components/global/base.module";
 
-.whishlist_page{
-    @extend %full-area;
-    >nav{
-        display: flex;
-        align-items: center;
-        background-color: base.$pink;
-        color:white;
-        font-size: xx-large;
-        font-weight: 700;
-        padding-block:0.4rem ;
-        padding-inline:1.5rem ;
+.whishlist_page {
+  @extend %full-area;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  > nav {
+    display: flex;
+    align-items: center;
+    background-color: base.$pink;
+    color: white;
+    font-size: xx-large;
+    font-weight: 700;
+    padding-block: 0.4rem;
+    padding-inline: 1.5rem;
+    @media (max-width:base.$sm) {
+        font-size: x-large;
         >button{
-            background-color: transparent;
-            border: none;
-            color: white;
-            font-size: xx-large;
-            font-weight: 700;
-            cursor: pointer;
-            padding-right: 1rem;
+            font-size: x-large !important;
         }
         >svg{
-            height: 2rem;
-            margin-left: auto;
-            fill: white;
+            height: 1.7rem !important;
         }
     }
+    > button {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: xx-large;
+      font-weight: 700;
+      cursor: pointer;
+      padding-right: 1rem;
+    }
+    > svg {
+      height: 2rem;
+      margin-left: 1rem;
+    }
+  }
+  > section {
+    margin-inline: auto;
+    box-sizing: border-box;
+    padding-bottom: 4rem;
+    padding-top: 2rem;
+    height: 100%;
+    width: 100%;
+    width: fit-content;
+    overflow-y: scroll;
+    @extend %scroll-hide;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+}
+.addToCart {
+  background-color: #217C7E;
+  margin-left: 2rem;
+  width: fit-content;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 1rem;
 }

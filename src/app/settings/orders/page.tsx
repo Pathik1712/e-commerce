@@ -4,6 +4,7 @@ import Loading from "@/components/loading/Loading_page"
 import Empty from "@/components/empty template/Empty"
 import css from "./style.module.scss"
 import { useRouter } from "next/navigation"
+import Order from "@/components/svg/Order"
 
 const Orders = () => {
   const router = useRouter()
@@ -17,6 +18,7 @@ const Orders = () => {
       <nav>
         <button onClick={() => router.back()}>{"<"}</button>
         Orders
+        <Order/>
       </nav>
       {data?.length === 0 ? <Empty /> : ""}
     </main>

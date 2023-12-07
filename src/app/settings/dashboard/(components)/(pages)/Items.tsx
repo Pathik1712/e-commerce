@@ -27,7 +27,8 @@ const Items = () => {
             </section>
             <p>price:{i.mrp != null ? i.mrp : i.price}</p>
             <p className={css.whishlist}>
-              <Cart /> whishlist count: {i.whishlist_id?.length}
+              <Cart /> whishlist count:{" "}
+              {i.whishlist_id != null ? i.whishlist_id.length : 0}
             </p>
             <div>
               {i.catagory.map((catagory, catagory_num) => (
@@ -39,8 +40,9 @@ const Items = () => {
             <span>
               <Link href={`dashboard?path=update&id=${i.id}`}>Update</Link>
               <button>remove</button>
-              <Link href={`dashboard?path=charts&id=${i.id}`}
-              className={css.chart_link}
+              <Link
+                href={`dashboard?path=charts&id=${i.id}`}
+                className={css.chart_link}
               >
                 <PieChart />
               </Link>

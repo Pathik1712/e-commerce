@@ -22,19 +22,16 @@ const Chart = ({ id }: Props) => {
   const data = useMemo(() => {
     if (item_data != null) {
       const arr = [
-        item_data.cart?.length,
-        item_data.sold_items?.length,
-        item_data.items?.find((i) => i.id === id)?.whishlist_id.length,
+        item_data.cart != null ? item_data.cart.length : 0,
+        item_data.sold_items != null ? item_data.sold_items.length : 0,
+        item_data.items?.find((i) => i.id === id)?.whishlist_id?.length ?? 0,
       ]
       const dataset: ChartData<"pie", number[], unknown> = {
         labels: ["Cart", "Ordered", "Whishlist"],
         datasets: [
           {
             data: arr.map((val) => Math.max(val!, 0.1)),
-            backgroundColor: [
-              "#ff6384", "#36a2eb", "#ffcd56"
-            ],
-            
+            backgroundColor: ["#ff6384", "#36a2eb", "#ffcd56"],
           },
         ],
       }
@@ -44,7 +41,7 @@ const Chart = ({ id }: Props) => {
         labels: ["Cart", "Ordered", "Whishlist"],
         datasets: [
           {
-            data: [0, 0, 0],
+            data: [0.1, 0.1, 0.1],
             backgroundColor: ["#CB4335", "36A2EB", "#FFCD56"],
           },
         ],
@@ -54,6 +51,7 @@ const Chart = ({ id }: Props) => {
   return (
     <main className={css.chart_page}>
       <div style={{ width: "30rem" }}>
+        <h1>Ratio Chart:</h1>
         <Pie
           data={data}
           options={{
@@ -83,7 +81,7 @@ const Chart = ({ id }: Props) => {
                   arr.forEach((color, index, colors) => {
                     colors[index] =
                       color.length === 9 ? color.slice(0, -2) : color
-                      console.log(arr)
+                    console.log(arr)
                   })
                   legend.chart.update()
                 },

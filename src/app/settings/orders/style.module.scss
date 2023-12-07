@@ -3,12 +3,23 @@
 .ordre_page{
     @extend %full-area;
     >nav{
+        display: flex;
+        align-items: center;
         background-color: base.$pink;
         color:white;
         font-size: xx-large;
         font-weight: 700;
         padding-block:0.4rem ;
         padding-inline:1.5rem ;
+        @media (max-width:base.$sm) {
+            font-size: x-large;
+            >button{
+                font-size: x-large !important;
+            }
+            >svg{
+                height: 1.7rem !important;
+            }
+        }
         >button{
             background-color: transparent;
             border: none;
@@ -17,6 +28,13 @@
             font-weight: 700;
             cursor: pointer;
             padding-right: 1rem;
+        }
+        >svg{
+            margin-left: 1rem;
+            height: 1.5rem;
+            path{
+                stroke: white;
+            }
         }
     }
 }
