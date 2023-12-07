@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Welcome to ShopEase Crafted with the simplicity and power of Next.js, our website offers a swift and delightful shopping experience. Dive into a world where technology meets convenience seamlessly. Welcome to the future of online retail with [Your E-commerce Project Name] powered by Next.js!
 
 ## Getting Started
 
@@ -18,14 +18,20 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Library Used In This Project
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+>Type Script
+>Chart.js
+>Axios
+>Next Auth
+>Bcrypt
+>react-chartjs-2
+>Sass
+>country-state-city
+>React-hot-toast
+>Prisma
+>@reduxjs/toolkit
+>react-redux
 
 ## Deploy on Vercel
 
