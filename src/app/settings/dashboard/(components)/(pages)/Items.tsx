@@ -1,9 +1,10 @@
 import Image from "next/image"
-import Cart from '@/components/svg/Cartsvg'
+import Cart from "@/components/svg/Cartsvg"
 import css from "../style.module.scss"
 import { useStoreselector } from "@/lib/redux/store"
 import Empty from "@/components/empty template/Empty"
 import Link from "next/link"
+import PieChart from "@/components/svg/PieChart"
 
 const Items = () => {
   const data = useStoreselector((state) => state.users.data.items)
@@ -25,7 +26,9 @@ const Items = () => {
               ))}
             </section>
             <p>price:{i.mrp != null ? i.mrp : i.price}</p>
-            <p className={css.whishlist}><Cart/> whishlist count: { i.whishlist_id?.length }</p>
+            <p className={css.whishlist}>
+              <Cart /> whishlist count: {i.whishlist_id?.length}
+            </p>
             <div>
               {i.catagory.map((catagory, catagory_num) => (
                 <span key={`items-${num}-catagory-${catagory_num}`}>
@@ -36,6 +39,11 @@ const Items = () => {
             <span>
               <Link href={`dashboard?path=update&id=${i.id}`}>Update</Link>
               <button>remove</button>
+              <Link href={`dashboard?path=charts&id=${i.id}`}
+              className={css.chart_link}
+              >
+                <PieChart />
+              </Link>
             </span>
             <hr />
           </main>

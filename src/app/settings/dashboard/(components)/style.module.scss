@@ -410,11 +410,25 @@
         @media (max-width: base.$sm) {
           font-size: medium;
         }
+        >svg{
+          height: 1rem;
+        }
       }
       > button {
         border: none;
         background-color: base.$blue;
         text-transform: capitalize;
+      }
+      .chart_link{
+        display: inline-flex;
+        position: relative;
+        top: 6px;
+        background-color: rgb(41, 41, 41);
+        padding-block: none;
+        padding-inline: 1rem;
+        >svg{
+          height: 1.5rem;
+        }
       }
     }
     > hr {
