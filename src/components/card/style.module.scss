@@ -51,10 +51,13 @@
     justify-self: center;
     max-height: 15rem;
     min-height: 10rem;
-    width: min-content;
+    width: auto;
     border-radius: inherit;
   }
   > h3 {
+    padding-inline: 15px;
+    overflow: hidden;
+    text-wrap: nowrap;
     text-overflow: ellipsis;
     color: transparent;
     background-image: linear-gradient(to right, #b24592, #f15f79);
