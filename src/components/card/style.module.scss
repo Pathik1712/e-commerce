@@ -56,8 +56,8 @@
   }
   > h3 {
     padding-inline: 15px;
+    white-space: nowrap;
     overflow: hidden;
-    text-wrap: nowrap;
     text-overflow: ellipsis;
     color: transparent;
     background-image: linear-gradient(to right, #b24592, #f15f79);
@@ -116,7 +116,7 @@
       }
     }
   }
-  >section{
+  > section {
     padding-left: 2rem;
     padding-bottom: 1rem;
     text-overflow: ellipsis;

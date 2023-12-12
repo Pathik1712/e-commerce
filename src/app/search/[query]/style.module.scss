@@ -5,14 +5,13 @@
 .loading {
   @extend %full-area;
   @extend %scroll-hide;
-  padding-bottom: 2rem;
+  padding-block: 2rem;
   overflow-y: scroll;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
-  padding-top: 2rem;
   > section {
     border: 1px solid gray;
     aspect-ratio: 9/11;

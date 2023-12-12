@@ -8,6 +8,7 @@ import Fillter from "@/components/svg/Fillter"
 import Sort from "@/components/svg/Sort"
 import { useId } from "react"
 import { useRouter, usePathname } from "next/navigation"
+import Link from "next/link"
 
 const SearchBar = ({ path }: { path: string }) => {
   const id = useId()
@@ -69,13 +70,19 @@ const SearchBar = ({ path }: { path: string }) => {
             Sort
           </label>
           <div className={css.opt}>
-            <button
+            {/* <button
               onClick={() => {
                 handleSort("high")
               }}
             >
               high to low
-            </button>
+            </button> */}
+            <Link
+              href={`/search/${path}?sort=high`}
+              prefetch={false}
+            >
+              ddd
+            </Link>
             <button
               onClick={() => {
                 handleSort("low")
