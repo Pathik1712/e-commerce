@@ -68,7 +68,10 @@ const Add_intem = () => {
         toast.error("please fill all image links", react_toast_style)
         return
       } else {
-        const obj: Omit<Item, "ratings" | "Sold" | "Odered" | "reviewes"> = {
+        const obj: Omit<
+          Item,
+          "ratings" | "Sold" | "Odered" | "reviewes" | "whishlist_id"
+        > = {
           catagory,
           image: image_slider.map((i) => i.link!),
           name: data!.product_name.value,
@@ -106,16 +109,16 @@ const Add_intem = () => {
         ref={form_ref}
       >
         <input
-          name='product_name'
+          name="product_name"
           required={true}
-          type='text'
-          placeholder='Enter Product Name'
+          type="text"
+          placeholder="Enter Product Name"
         />
         <input
-          name='product_price'
+          name="product_price"
           required={true}
-          type='number'
-          placeholder='Enter Price'
+          type="number"
+          placeholder="Enter Price"
         />
         <div
           className={css.section_scroll}
@@ -124,7 +127,7 @@ const Add_intem = () => {
           <div>
             <button
               className={css.add_button}
-              type='button'
+              type="button"
               onClick={() => {
                 if (image_slider.find((i) => !i.link)) {
                   toast.error("plese enter image in all box", react_toast_style)
@@ -155,8 +158,8 @@ const Add_intem = () => {
             <div key={`add-item-image-${num}`}>
               {!i.link ? (
                 <input
-                  type='text'
-                  placeholder='Past Image Link'
+                  type="text"
+                  placeholder="Past Image Link"
                   onChange={async (e) => {
                     if (
                       !e.target.value.includes("https:") &&
@@ -204,7 +207,7 @@ const Add_intem = () => {
               ) : (
                 <Image
                   src={i.link!}
-                  alt='not found'
+                  alt="not found"
                   fill={true}
                   onError={(e) => {
                     console.log(e)
@@ -212,7 +215,7 @@ const Add_intem = () => {
                 />
               )}
               <button
-                type='button'
+                type="button"
                 className={css.remove_button}
                 onClick={() => {
                   set_image_slider(
@@ -227,18 +230,18 @@ const Add_intem = () => {
         </div>
         <textarea
           required={true}
-          name='product_dec'
-          placeholder='Add Discription'
+          name="product_dec"
+          placeholder="Add Discription"
         ></textarea>
         <section>
           <input
-            name='catagory_input'
-            className='catagory-input'
-            type='text'
-            placeholder='Add catagory'
+            name="catagory_input"
+            className="catagory-input"
+            type="text"
+            placeholder="Add catagory"
           />
           <button
-            type='button'
+            type="button"
             onClick={() => {
               const elm = document.getElementsByClassName(
                 "catagory-input"
@@ -264,7 +267,7 @@ const Add_intem = () => {
               <span key={`catagory-${num}`}>
                 <span>{i}</span>
                 <button
-                  type='button'
+                  type="button"
                   onClick={() => {
                     set_catagory(catagory.filter((item) => item !== i))
                   }}
@@ -277,7 +280,7 @@ const Add_intem = () => {
         </section>
         <button
           className={css.submit_button}
-          type='submit'
+          type="submit"
           disabled={loading}
         >
           {loading ? <GlobalLoader /> : "Add"}

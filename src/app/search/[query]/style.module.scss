@@ -61,22 +61,35 @@
 .nav {
   background-color: base.$pink;
   padding: 1rem 2rem;
+  padding-bottom: 0;
+  @media (max-width: base.$sm) {
+    padding: 1rem;
+  }
+
   > form {
     display: flex;
     align-items: center;
     justify-content: center;
     > span {
-        margin-left: auto;
-      > svg {
+      margin-left: auto;
+      svg {
         margin-inline: 1rem;
         height: 2rem;
       }
+      @media (max-width: base.$sm) {
+        > span {
+          display: none;
+        }
+      }
     }
     > div {
-        width: 60%;
-        margin-left: auto;
-        height: 1.5rem;
-        display: flex;
+      width: 60%;
+      margin-left: auto;
+      height: 1.5rem;
+      display: flex;
+      @media (max-width: base.$sm) {
+        margin-left: 0;
+      }
       > input {
         width: 100%;
         border: none;
@@ -99,10 +112,85 @@
     }
   }
 }
+.fillter {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 2rem;
+  background-color: lighten(base.$pink, 35%);
+  border-bottom: 1px solid rgb(128, 128, 128);
+  > section {
+    position: relative;
+    > input[type="checkbox"] {
+      display: none;
+      &:checked~.opt{
+        transform: scale(1);
+      }
+    }
+    > label {
+      background-color: base.$blue;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      font-weight: bolder;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      > svg {
+        height: 1.4rem;
+      }
+      @media (pointer: fine) {
+        &:hover {
+          background-color: darken(base.$blue, 10%);
+        }
+      }
+    }
+    .opt {
+      transition: all 0.3s ;
+      transform: scale(0);
+      transform-origin: top left;
+      position: absolute;
+      top: 120%;
+      left: 0%;
+      padding: 10px;
+      z-index: 5;
+      border-radius: 5px;
+      list-style: none;
+      background-color:#FF5376;
+      width: max-content;
+      >button{
+        padding-block: 10px;
+        cursor: pointer;
+        display: block;
+        color: white;
+        text-transform: capitalize;
+        background: none;
+        border: none;
+        font-weight: 600;
+        font-size: 1rem;
+
+      }
+    }
+  }
+}
 
 .searchPage {
   @extend %full-area;
   display: grid;
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
+  grid-template-rows: auto auto 1fr;
+  > section {
+    box-sizing: border-box;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    @extend %full-area;
+    @extend %scroll-hide;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
 }

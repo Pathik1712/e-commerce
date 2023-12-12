@@ -9,7 +9,7 @@ import Order from "@/components/svg/Order"
 import Seller from "@/components/svg/Seller"
 import SignoutButton from "@/func/Signout"
 import { getServerSession } from "next-auth"
-import { option } from "@/app/api/auth/[...nextauth]/route"
+import { option } from "@/lib/NextauthOptions"
 import Image from "next/image"
 
 const Menubtn = async () => {

@@ -83,7 +83,10 @@ const UpdateItems = ({ id }: Props) => {
         toast.error("discount is more than product price", react_toast_style)
         return
       } else {
-        const obj: Omit<Item, "ratings" | "Sold" | "Odered" | "reviewes"> = {
+        const obj: Omit<
+          Item,
+          "ratings" | "Sold" | "Odered" | "reviewes" | "whishlist_id"
+        > = {
           catagory,
           image: image_slider.map((i) => i.link!),
           name: data!.product_name.value,
